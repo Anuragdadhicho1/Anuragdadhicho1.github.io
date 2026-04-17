@@ -6,6 +6,7 @@
   --primary-dark: #1d4ed8;
   --card: #ffffff;
   --border: #dbe3f5;
+  --header-height: 62px;
 }
 
 * {
@@ -304,7 +305,7 @@ input:focus {
 
   .main-nav {
     position: absolute;
-    top: 62px;
+    top: var(--header-height);
     left: 0;
     right: 0;
     background: #fff;

@@ -4,6 +4,8 @@ const year = document.querySelector("#year");
 const eligibilityForm = document.querySelector("#eligibility-form");
 const eligibilityResult = document.querySelector("#eligibility-result");
 const calcBtn = document.querySelector("#calc-btn");
+const DEFAULT_INTEREST_RATE = 18;
+const ELIGIBILITY_RATIO = 0.5;
 
 function calculateEmi(principal, annualRate, months) {
   if (!principal || !annualRate || !months || months <= 0) {
@@ -43,8 +45,8 @@ if (eligibilityForm && eligibilityResult) {
       return;
     }
 
-    const estimatedEmi = calculateEmi(amount, 18, tenure);
-    const eligibilityThreshold = income * 0.5;
+    const estimatedEmi = calculateEmi(amount, DEFAULT_INTEREST_RATE, tenure);
+    const eligibilityThreshold = income * ELIGIBILITY_RATIO;
     eligibilityResult.textContent =
       estimatedEmi <= eligibilityThreshold
         ? "✅ Looks eligible. Continue with full application."
