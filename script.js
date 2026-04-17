@@ -5,6 +5,21 @@ const eligibilityForm = document.querySelector("#eligibility-form");
 const eligibilityResult = document.querySelector("#eligibility-result");
 const calcBtn = document.querySelector("#calc-btn");
 
+function calculateEmi(principal, annualRate, months) {
+  if (!principal || !annualRate || !months || months <= 0) {
+    return 0;
+  }
+  const monthlyRate = annualRate / 12 / 100;
+  if (monthlyRate === 0) {
+    return principal / months;
+  }
+  return (principal * monthlyRate * (1 + monthlyRate) ** months) / ((1 + monthlyRate) ** months - 1);
+}
+
+function getNumberValue(selector) {
+  return Number(document.querySelector(selector)?.value || 0);
+}
+
 if (year) {
   year.textContent = String(new Date().getFullYear());
 }
@@ -19,16 +34,16 @@ if (menuBtn && nav) {
 if (eligibilityForm && eligibilityResult) {
   eligibilityForm.addEventListener("submit", (event) => {
     event.preventDefault();
-    const amount = Number(document.querySelector("#amount")?.value || 0);
-    const tenure = Number(document.querySelector("#tenure")?.value || 0);
-    const income = Number(document.querySelector("#income")?.value || 0);
+    const amount = getNumberValue("#amount");
+    const tenure = getNumberValue("#tenure");
+    const income = getNumberValue("#income");
 
     if (!amount || !tenure || !income) {
       eligibilityResult.textContent = "Please enter valid details.";
       return;
     }
 
-    const estimatedEmi = amount / tenure;
+    const estimatedEmi = calculateEmi(amount, 18, tenure);
     const eligibilityThreshold = income * 0.5;
     eligibilityResult.textContent =
       estimatedEmi <= eligibilityThreshold
@@ -37,28 +52,20 @@ if (eligibilityForm && eligibilityResult) {
   });
 }
 
-function calculateEmi(principal, annualRate, months) {
-  if (!principal || !annualRate || !months || months <= 0) {
-    return 0;
+function updateEmi() {
+  const amount = getNumberValue("#calc-amount");
+  const rate = getNumberValue("#calc-rate");
+  const months = getNumberValue("#calc-months");
+  const emi = calculateEmi(amount, rate, months);
+  const output = document.querySelector("#emi-output");
+  if (output) {
+    output.textContent = Number.isFinite(emi) && emi > 0
+      ? `₹ ${Math.round(emi).toLocaleString("en-IN")} / month`
+      : "Please enter valid values.";
   }
-  const monthlyRate = annualRate / 12 / 100;
-  if (monthlyRate === 0) {
-    return principal / months;
-  }
-  return (principal * monthlyRate * (1 + monthlyRate) ** months) / ((1 + monthlyRate) ** months - 1);
 }
 
 if (calcBtn) {
-  calcBtn.addEventListener("click", () => {
-    const amount = Number(document.querySelector("#calc-amount")?.value || 0);
-    const rate = Number(document.querySelector("#calc-rate")?.value || 0);
-    const months = Number(document.querySelector("#calc-months")?.value || 0);
-    const emi = calculateEmi(amount, rate, months);
-    const output = document.querySelector("#emi-output");
-    if (output) {
-      output.textContent = Number.isFinite(emi) && emi > 0
-        ? `₹ ${Math.round(emi).toLocaleString("en-IN")} / month`
-        : "Please enter valid values.";
-    }
-  });
+  calcBtn.addEventListener("click", updateEmi);
+  updateEmi();
 }
