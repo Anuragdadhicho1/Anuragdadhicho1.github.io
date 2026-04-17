@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BorrowHub | Fast Personal Loans</title>
+    <meta
+      name="description"
+      content="BorrowHub helps you compare and apply for personal loans with fast approvals, transparent rates, and secure processing."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a href="#" class="logo">Borrow<span>Hub</span></a>
+        <button class="menu-btn" aria-label="Open menu" aria-expanded="false">☰</button>
+        <nav class="main-nav" aria-label="Main navigation">
+          <a href="#features">Features</a>
+          <a href="#how-it-works">How it works</a>
+          <a href="#calculator">Calculator</a>
+          <a href="#faq">FAQ</a>
+          <a href="#apply" class="btn btn-sm">Apply Now</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container hero-grid">
+          <div>
+            <p class="eyebrow">Trusted lending marketplace</p>
+            <h1>Get the right loan for your needs in minutes.</h1>
+            <p class="lead">
+              Compare verified lenders, check eligibility without impacting your credit score,
+              and receive funds quickly after approval.
+            </p>
+            <div class="hero-actions">
+              <a href="#apply" class="btn">Start Application</a>
+              <a href="#how-it-works" class="btn btn-light">Learn More</a>
+            </div>
+            <ul class="hero-points">
+              <li>Pre-check in 2 minutes</li>
+              <li>Clear, transparent terms</li>
+              <li>Secure & encrypted process</li>
+            </ul>
+          </div>
+          <aside class="hero-card" id="apply">
+            <h2>Quick Eligibility Check</h2>
+            <form id="eligibility-form">
+              <label for="amount">Loan amount (₹)</label>
+              <input id="amount" type="number" min="5000" max="500000" value="100000" required />
+              <label for="tenure">Tenure (months)</label>
+              <input id="tenure" type="number" min="3" max="60" value="12" required />
+              <label for="income">Monthly income (₹)</label>
+              <input id="income" type="number" min="10000" value="30000" required />
+              <button type="submit" class="btn">Check Eligibility</button>
+              <p id="eligibility-result" class="result" role="status" aria-live="polite"></p>
+            </form>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section" id="features">
+        <div class="container">
+          <h2>Why people choose BorrowHub</h2>
+          <div class="cards">
+            <article class="card">
+              <h3>Fast decisions</h3>
+              <p>Get pre-qualified offers quickly from trusted lenders.</p>
+            </article>
+            <article class="card">
+              <h3>Better rates</h3>
+              <p>Compare options side-by-side to choose a suitable rate.</p>
+            </article>
+            <article class="card">
+              <h3>No hidden charges</h3>
+              <p>See processing fees, EMI, and terms clearly before applying.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-alt" id="how-it-works">
+        <div class="container">
+          <h2>How it works</h2>
+          <div class="steps">
+            <div><span>1</span><p>Fill a short form with amount and basic details.</p></div>
+            <div><span>2</span><p>Get matched with lender offers based on your profile.</p></div>
+            <div><span>3</span><p>Complete KYC and receive disbursal after approval.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="calculator">
+        <div class="container calc-grid">
+          <div>
+            <h2>EMI Calculator</h2>
+            <p>Estimate your monthly EMI instantly.</p>
+            <label for="calc-amount">Amount (₹)</label>
+            <input id="calc-amount" type="number" min="5000" value="100000" />
+            <label for="calc-rate">Interest rate (% per year)</label>
+            <input id="calc-rate" type="number" min="1" step="0.1" value="12" />
+            <label for="calc-months">Tenure (months)</label>
+            <input id="calc-months" type="number" min="1" value="12" />
+            <button id="calc-btn" class="btn" type="button">Calculate EMI</button>
+          </div>
+          <div class="calc-result">
+            <h3>Estimated EMI</h3>
+            <p id="emi-output">₹ 8,885 / month</p>
+            <small>This is an estimate and may vary by lender policy.</small>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-alt" id="faq">
+        <div class="container">
+          <h2>Frequently asked questions</h2>
+          <div class="faq">
+            <details>
+              <summary>Will checking eligibility impact my credit score?</summary>
+              <p>No, the initial pre-check uses a soft inquiry.</p>
+            </details>
+            <details>
+              <summary>How fast can I get funds?</summary>
+              <p>Many approved applications receive funds within 24-48 hours.</p>
+            </details>
+            <details>
+              <summary>What documents are required?</summary>
+              <p>Typically identity proof, address proof, and income verification.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-wrap">
+        <p>© <span id="year"></span> BorrowHub. All rights reserved.</p>
+        <p>Need help? Email: support@borrowhub.me</p>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
